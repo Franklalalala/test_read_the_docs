@@ -1,28 +1,3 @@
-.. todo:: THIS IS SUPPOSED TO BE AN EXAMPLE. MODIFY IT ACCORDING TO YOUR NEEDS!
-
-   The document assumes you are using a source repository service that promotes a
-   contribution model similar to `GitHub's fork and pull request workflow`_.
-   While this is true for the majority of services (like GitHub, GitLab,
-   BitBucket), it might not be the case for private repositories (e.g., when
-   using Gerrit).
-
-   Also notice that the code examples might refer to GitHub URLs or the text
-   might use GitHub specific terminology (e.g., *Pull Request* instead of *Merge
-   Request*).
-
-   Please make sure to check the document having these assumptions in mind
-   and update things accordingly.
-
-.. todo:: Provide the correct links/replacements at the bottom of the document.
-
-.. todo:: You might want to have a look on `PyScaffold's contributor's guide`_,
-
-   especially if your project is open source. The text should be very similar to
-   this template, but there are a few extra contents that you might decide to
-   also include, like mentioning labels of your issue tracker or automated
-   releases.
-
-
 ============
 Contributing
 ============
@@ -134,172 +109,42 @@ or Miniconda_::
     conda create -n AutoSteper python=3 six virtualenv pytest pytest-cov
     conda activate AutoSteper
 
-Clone the repository
+Installation
 --------------------
 
-#. Create an user account on |the repository service| if you do not already have one.
-#. Fork the project repository_: click on the *Fork* button near the top of the
-   page. This creates a copy of the code under your account on |the repository service|.
-#. Clone this copy to your local disk::
+To install from the source code, the AutoSteper package:
+.. code:: 
 
-    git clone git@github.com:YourLogin/AutoSteper.git
-    cd AutoSteper
+   git clone https://github.com/Franklalalala/AutoSteper
+   cd AutoSteper
+   pip install . -e
 
-#. You should run::
+The FullereneDataParser package:
 
-    pip install -U pip setuptools -e .
+.. code:: 
 
-   to be able to import the package under development in the Python REPL.
+   git clone https://github.com/XJTU-ICP/FullereneDataParser
+   cd FullereneDataParser
+   pip install . -e
 
-   .. todo:: if you are not using pre-commit, please remove the following item:
+To compile the usenauty project, please follow instructions in
+`usenauty <https://github.com/Franklalalala/usenauty>`__.
 
-#. Install |pre-commit|_::
-
-    pip install pre-commit
-    pre-commit install
-
-   ``AutoSteper`` comes with a lot of hooks configured to automatically help the
-   developer to check the code being written.
-
-Implement your changes
-----------------------
-
-#. Create a branch to hold your changes::
-
-    git checkout -b my-feature
-
-   and start making changes. Never work on the main branch!
-
-#. Start your work on this branch. Don't forget to add docstrings_ to new
-   functions, modules and classes, especially if they are part of public APIs.
-
-#. Add yourself to the list of contributors in ``AUTHORS.rst``.
-
-#. When you’re done editing, do::
-
-    git add <MODIFIED FILES>
-    git commit
-
-   to record your changes in git_.
-
-   .. todo:: if you are not using pre-commit, please remove the following item:
-
-   Please make sure to see the validation messages from |pre-commit|_ and fix
-   any eventual issues.
-   This should automatically use flake8_/black_ to check/fix the code style
-   in a way that is compatible with the project.
-
-   .. important:: Don't forget to add unit tests and documentation in case your
-      contribution adds an additional feature and is not just a bugfix.
-
-      Moreover, writing a `descriptive commit message`_ is highly recommended.
-      In case of doubt, you can check the commit history with::
-
-         git log --graph --decorate --pretty=oneline --abbrev-commit --all
-
-      to look for recurring communication patterns.
-
-#. Please check that your changes don't break any unit tests with::
-
-    tox
-
-   (after having installed |tox|_ with ``pip install tox`` or ``pipx``).
-
-   You can also use |tox|_ to run several other pre-configured tasks in the
-   repository. Try ``tox -av`` to see a list of the available checks.
 
 Submit your contribution
 ------------------------
 
-#. If everything works fine, push your local branch to |the repository service| with::
-
-    git push -u origin my-feature
-
-#. Go to the web page of your fork and click |contribute button|
-   to send your changes for review.
-
-   .. todo:: if you are using GitHub, you can uncomment the following paragraph
-
-      Find more detailed information in `creating a PR`_. You might also want to open
-      the PR as a draft first and mark it as ready for review after the feedbacks
-      from the continuous integration (CI) system or any required fixes.
+AutoSteper implements `GitHub
+Actions <https://github.com/features/actions>`__ to perform version
+control. To trigger an effective response, commit messages needs to stay
+in line with `Conventional Commit
+messages <https://www.conventionalcommits.org/>`__.
 
 
 Troubleshooting
 ---------------
 
-The following tips can be used when facing problems to build or test the
-package:
-
-#. Make sure to fetch all the tags from the upstream repository_.
-   The command ``git describe --abbrev=0 --tags`` should return the version you
-   are expecting. If you are trying to run CI scripts in a fork repository,
-   make sure to push all the tags.
-   You can also try to remove all the egg files or the complete egg folder, i.e.,
-   ``.eggs``, as well as the ``*.egg-info`` folders in the ``src`` folder or
-   potentially in the root of your project.
-
-#. Sometimes |tox|_ misses out when new dependencies are added, especially to
-   ``setup.cfg`` and ``docs/requirements.txt``. If you find any problems with
-   missing dependencies when running a command with |tox|_, try to recreate the
-   ``tox`` environment using the ``-r`` flag. For example, instead of::
-
-    tox -e docs
-
-   Try running::
-
-    tox -r -e docs
-
-#. Make sure to have a reliable |tox|_ installation that uses the correct
-   Python version (e.g., 3.7+). When in doubt you can run::
-
-    tox --version
-    # OR
-    which tox
-
-   If you have trouble and are seeing weird errors upon running |tox|_, you can
-   also try to create a dedicated `virtual environment`_ with a |tox|_ binary
-   freshly installed. For example::
-
-    virtualenv .venv
-    source .venv/bin/activate
-    .venv/bin/pip install tox
-    .venv/bin/tox -e all
-
-#. `Pytest can drop you`_ in an interactive session in the case an error occurs.
-   In order to do that you need to pass a ``--pdb`` option (for example by
-   running ``tox -- -k <NAME OF THE FALLING TEST> --pdb``).
-   You can also setup breakpoints manually instead of using the ``--pdb`` option.
-
-
-Maintainer tasks
-================
-
-Releases
---------
-
-.. todo:: This section assumes you are using PyPI to publicly release your package.
-
-   If instead you are using a different/private package index, please update
-   the instructions accordingly.
-
-If you are part of the group of maintainers and have correct user permissions
-on PyPI_, the following steps can be used to release a new version for
-``AutoSteper``:
-
-#. Make sure all unit tests are successful.
-#. Tag the current commit on the main branch with a release tag, e.g., ``v1.2.3``.
-#. Push the new tag to the upstream repository_, e.g., ``git push upstream v1.2.3``
-#. Clean up the ``dist`` and ``build`` folders with ``tox -e clean``
-   (or ``rm -rf dist build``)
-   to avoid confusion with old builds and Sphinx docs.
-#. Run ``tox -e build`` and check that the files in ``dist`` have
-   the correct version (no ``.dirty`` or git_ hash) according to the git_ tag.
-   Also check the sizes of the distributions, if they are too big (e.g., >
-   500KB), unwanted clutter may have been accidentally included.
-#. Run ``tox -e publish -- --repository pypi`` and check that everything was
-   uploaded to PyPI_ correctly.
-
+Load the highest version of the aviable compiler in your enviroment will solve most of the problems.
 
 
 .. [#contrib1] Even though, these resources focus on open source projects and
@@ -314,8 +159,8 @@ on PyPI_, the following steps can be used to release a new version for
 .. |the repository service| replace:: GitHub
 .. |contribute button| replace:: "Create pull request"
 
-.. _repository: https://github.com/<USERNAME>/AutoSteper
-.. _issue tracker: https://github.com/<USERNAME>/AutoSteper/issues
+.. _repository: https://github.com/Franklalalala/AutoSteper
+.. _issue tracker: https://github.com/Franklalalala/AutoSteper/issues
 .. <-- end -->
 
 
