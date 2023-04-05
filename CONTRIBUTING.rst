@@ -103,8 +103,8 @@ The FullereneDataParser package:
 .. warning::
 
    `FullereneDataParser <https://github.com/XJTU-ICP/FullereneDataParser>`__ contains part of C++ code, 
-to properly install, an advanced compiler version is required. Simply load the highest available version of 
-compiler will avoid most of the problems.
+   to properly install, an advanced compiler version is required. Simply load the highest available version of 
+   compiler will avoid most of the problems.
 
 
 To compile the usenauty project, please follow instructions in
