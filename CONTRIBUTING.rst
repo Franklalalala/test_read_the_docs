@@ -99,12 +99,17 @@ The FullereneDataParser package:
    cd FullereneDataParser
    pip install . -e
 
+
 .. warning::
 
-`FullereneDataParser <https://github.com/XJTU-ICP/FullereneDataParser>`__
-contains part of C++ code, to properly install, an advanced compiler
-version is required. Simply load the highest available version of
+   `FullereneDataParser <https://github.com/XJTU-ICP/FullereneDataParser>`__ contains part of C++ code, 
+to properly install, an advanced compiler version is required. Simply load the highest available version of 
 compiler will avoid most of the problems.
+
+
+.. warning::
+
+
 
 
 To compile the usenauty project, please follow instructions in
