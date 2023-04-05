@@ -47,25 +47,6 @@ by adding missing information and correcting mistakes.
 This means that the docs are kept in the same repository as the project code, and
 that any documentation update is done in the same way was a code contribution.
 
-.. todo:: Don't forget to mention which markup language you are using.
-
-    e.g.,  reStructuredText_ or CommonMark_ with MyST_ extensions.
-
-.. todo:: If your project is hosted on GitHub, you can also mention the following tip:
-
-   .. tip::
-      Please notice that the `GitHub web interface`_ provides a quick way of
-      propose changes in ``AutoSteper``'s files. While this mechanism can
-      be tricky for normal code contributions, it works perfectly fine for
-      contributing to the docs, and can be quite handy.
-
-      If you are interested in trying this method out, please navigate to
-      the ``docs`` folder in the source repository_, find which file you
-      would like to propose changes and click in the little pencil icon at the
-      top, to open `GitHub's code editor`_. Once you finish editing the file,
-      please write a message in the form at the bottom of the page describing
-      which changes have you made and what are the motivations behind them and
-      submit your proposal.
 
 When working on documentation changes in your local machine, you can
 compile them using |tox|_::
@@ -81,11 +62,6 @@ and use Python's built-in web server for a preview in your web browser
 Code Contributions
 ==================
 
-.. todo:: Please include a reference or explanation about the internals of the project.
-
-   An architecture description, design principles or at least a summary of the
-   main concepts will make it easy for potential contributors to get started
-   quickly.
 
 Submit an issue
 ---------------
@@ -94,25 +70,21 @@ Before you work on any non-trivial code contribution it's best to first create
 a report in the `issue tracker`_ to start a discussion on the subject.
 This often provides additional considerations and avoids unnecessary work.
 
-Create an environment
+Setup environment
 ---------------------
 
-Before you start coding, we recommend creating an isolated `virtual
-environment`_ to avoid any problems with your installed Python packages.
-This can easily be done via either |virtualenv|_::
+Prepare a conda environment:
 
-    virtualenv <PATH TO VENV>
-    source <PATH TO VENV>/bin/activate
+.. code:: 
 
-or Miniconda_::
+   conda create -n AutoSteper python=3.8
+   conda activate AutoSteper
 
-    conda create -n AutoSteper python=3 six virtualenv pytest pytest-cov
-    conda activate AutoSteper
-
-Installation
+Collect packages
 --------------------
 
 To install from the source code, the AutoSteper package:
+
 .. code:: 
 
    git clone https://github.com/Franklalalala/AutoSteper
@@ -126,6 +98,14 @@ The FullereneDataParser package:
    git clone https://github.com/XJTU-ICP/FullereneDataParser
    cd FullereneDataParser
    pip install . -e
+
+.. warning::
+
+`FullereneDataParser <https://github.com/XJTU-ICP/FullereneDataParser>`__
+contains part of C++ code, to properly install, an advanced compiler
+version is required. Simply load the highest available version of
+compiler will avoid most of the problems.
+
 
 To compile the usenauty project, please follow instructions in
 `usenauty <https://github.com/Franklalalala/usenauty>`__.
@@ -144,7 +124,10 @@ messages <https://www.conventionalcommits.org/>`__.
 Troubleshooting
 ---------------
 
-Load the highest version of the aviable compiler in your enviroment will solve most of the problems.
+Load the highest version of the aviable compiler in your enviroment will solve most of the problems. If not, `lower the version
+requirement <https://github.com/Franklalalala/usenauty#note-for-compiler-version>`__
+may help.
+
 
 
 .. [#contrib1] Even though, these resources focus on open source projects and
