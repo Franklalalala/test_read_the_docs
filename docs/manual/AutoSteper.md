@@ -108,7 +108,7 @@ If everything goes well, a gentle notation is expected after executing this bina
 path/to/cagesearch
 ```
 
-![image-20221220010149410](./fig/nauty_notation.png)
+![notation](./fig/nauty_notation.png)
 
 <center>The usenauty notation.</center>
 
