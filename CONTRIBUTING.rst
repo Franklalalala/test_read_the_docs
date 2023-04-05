@@ -107,11 +107,6 @@ to properly install, an advanced compiler version is required. Simply load the h
 compiler will avoid most of the problems.
 
 
-.. warning::
-
-
-
-
 To compile the usenauty project, please follow instructions in
 `usenauty <https://github.com/Franklalalala/usenauty>`__.
 
