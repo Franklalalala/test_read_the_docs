@@ -24,16 +24,32 @@ author = "Read the Docs core team"
 
 # -- General configuration ---------------------------------------------------
 # -- General configuration
+# extensions = [
+#     "sphinx.ext.duration",
+#     "sphinx.ext.doctest",
+#     "sphinx.ext.autodoc",
+#     "sphinx.ext.autosummary",
+#     "sphinx.ext.intersphinx",
+#     'myst_parser',
+#     'sphinx_material',
+# ]
 
 extensions = [
-    "sphinx.ext.duration",
-    "sphinx.ext.doctest",
     "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
-    'myst_parser',
+    "sphinx.ext.todo",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.coverage",
+    "sphinx.ext.doctest",
+    "sphinx.ext.ifconfig",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.napoleon",
     'sphinx_material',
+    'myst_parser'
 ]
+
+
 
 intersphinx_mapping = {
     "rtd": ("https://docs.readthedocs.io/en/stable/", None),
@@ -71,3 +87,10 @@ html_theme_options = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+html_sidebars = {
+    "**": ["logo-text.html", "globaltoc.html", "localtoc.html",
+           "searchbox.html"]
+}
+
+htmlhelp_basename = "autosteper-doc"
