@@ -25,7 +25,7 @@ Contents
    Home <self>
    usage
    api
-   manual/autosteper <AutoSteper>
+   manual/autosteper
 
 .. toctree::
    :maxdepth: 2
