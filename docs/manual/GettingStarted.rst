@@ -1,2 +1,8 @@
-.. include:: ./GettingStarted.md
-   :parser: myst_parser.sphinx_
+Getting started
+===============
+
+Your first simulation
+---------------------
+
+Simple analysis
+---------------
