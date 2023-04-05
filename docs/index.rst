@@ -21,8 +21,6 @@ Contents
    :caption: User guide
 
    About <self>
-   usage
-   api
    manual/autosteper
 
 .. toctree::

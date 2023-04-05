@@ -77,7 +77,7 @@ compiler will avoid most of the problems.
 
 see
 
-.. figure:: ./docs/test/fig/addon.png
+.. figure:: ./fig/addon.png
    :alt: 
 
 
