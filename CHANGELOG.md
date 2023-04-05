@@ -9,3 +9,12 @@
 
 ## [1.3.8](https://github.com/Franklalalala/AutoSteper/compare/v1.3.7...v1.3.8) (2023-03-27)
 
+The stepwise reaction of exohedral fullerenes originated from the radical-addition theory,[^1] in which the functionalization of fullerenes is described to be a radical attack behavior. Functional groups attack the carbon cage one by one, and the energetically favored adducts could be isolated. 
+
+
+
+> **_Note_**: 11111
+
+
+
+[^1]: 10.1039/A905719F
