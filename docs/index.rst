@@ -1,5 +1,3 @@
-.. include:: ../README.rst
-
 Welcome to Lumache's documentation!
 ===================================
 
@@ -22,7 +20,7 @@ Contents
    :maxdepth: 2
    :caption: User guide
 
-   Home <self>
+   About <self>
    usage
    api
    manual/autosteper

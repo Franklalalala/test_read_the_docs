@@ -69,7 +69,7 @@ compiler will avoid most of the problems.
 
 
 
-.. warnning::
+.. warning::
 
    This project is under active development.
 
