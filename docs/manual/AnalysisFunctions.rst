@@ -102,8 +102,7 @@ information.
 
 .. figure:: ./fig/iso_rel_e.png
    :alt: iso_rel_e
-
-   iso_rel_e
+   :align: center
 
 .. raw:: html
 

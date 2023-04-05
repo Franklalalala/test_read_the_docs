@@ -103,8 +103,7 @@ Specifically, one needs to provide:
 
 .. figure:: ./fig/root.png
    :alt: root
-
-   root
+   :align: center
 
 .. raw:: html
 
@@ -142,8 +141,7 @@ the ``stop`` value is 10, and the ``step`` value is 1.
 
 .. figure:: ./fig/addon.png
    :alt: addon
-
-   addon
+   :align: center
 
 .. raw:: html
 
@@ -159,8 +157,7 @@ The directory of the **first** step is illustrated in Fig 7.
 
 .. figure:: ./fig/first_step.png
    :alt: first_step
-
-   first_step
+   :align: center
 
 .. raw:: html
 
@@ -198,8 +195,7 @@ The functions of each file/directory are presented below.
 
 .. figure:: ./fig/deep_yes.png
    :alt: deep_yes
-
-   deep_yes
+   :align: center
 
 .. raw:: html
 
@@ -232,8 +228,7 @@ Fig 8. Example of the passed_info.
 
 .. figure:: ./fig/flat_yes_first.png
    :alt: flat_yes_first
-
-   flat_yes_first
+   :align: center
 
 .. raw:: html
 
@@ -247,8 +242,7 @@ Fig 9. Example of the parent_info in the first step.
 
 .. figure:: ./fig/flat_yes_after.png
    :alt: flat_yes_after
-
-   flat_yes_after
+   :align: center
 
 .. raw:: html
 
@@ -274,8 +268,7 @@ Fig 10. Example of the parent_info in the proceeding addition stages.
 
 .. figure:: ./fig/status_info.png
    :alt: status_info
-
-   status_info
+   :align: center
 
 .. raw:: html
 
@@ -295,8 +288,7 @@ Fig 12. The difference compared with the first step is presented below:
 
 .. figure:: ./fig/after_step.png
    :alt: after_step
-
-   after_step
+   :align: center
 
 .. raw:: html
 
@@ -318,8 +310,7 @@ Fig 12. The workbase for the proceeding addition stages.
 
 .. figure:: ./fig/all_parent_info.png
    :alt: all_parent_info
-
-   all_parent_info
+   :align: center
 
 .. raw:: html
 
@@ -464,8 +455,7 @@ The original workflow of the dpdispatcher is illustrated in Fig 14.
 
 .. figure:: ./fig/dpdispatch_arch.png
    :alt: dpdispatch_arch
-
-   dpdispatch_arch
+   :align: center
 
 .. raw:: html
 
@@ -492,8 +482,7 @@ of the modified dpdispatcher is presented in Fig 15.
 
 .. figure:: ./fig/sub_batch_arch.png
    :alt: sub_batch_arch
-
-   sub_batch_arch
+   :align: center
 
 .. raw:: html
 
@@ -642,8 +631,7 @@ Here presents the well-designed heatmap. See Fig 20.
 
 .. figure:: ./fig/Path_relative_energy.png
    :alt: Path_relative_energy
-
-   Path_relative_energy
+   :align: center
 
 .. raw:: html
 
@@ -677,8 +665,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 
 .. figure:: ./fig/blacklist_landscape.png
    :alt: blacklist_landscape
-
-   blacklist_landscape
+   :align: center
 
 .. raw:: html
 
@@ -699,8 +686,7 @@ queue to store high-energy patterns. See Fig 17.
 
 .. figure:: ./fig/blk_list.png
    :alt: blk_list
-
-   blk_list
+   :align: center
 
 .. raw:: html
 
@@ -759,8 +745,7 @@ mode workbase.
 
 .. figure:: ./fig/pre_scan_folder.png
    :alt: pre_scan_folder
-
-   pre_scan_folder
+   :align: center
 
 .. raw:: html
 

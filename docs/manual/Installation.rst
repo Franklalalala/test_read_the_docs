@@ -78,8 +78,7 @@ this binary file:
 
 .. figure:: ./fig/nauty_notation.png
    :alt: image-20221220010149410
-
-   image-20221220010149410
+   :align: center
 
 .. raw:: html
 
