@@ -60,7 +60,7 @@ After that, one needs to provide:
 
 This function is designed to strictly find relatives of a specific isomer. It implements the [subgraph_is_isomorphic](https://networkx.org/documentation/latest/reference/algorithms/generated/networkx.algorithms.isomorphism.GraphMatcher.subgraph_is_isomorphic.html#graphmatcher-subgraph-is-isomorphic) function to perform the isomorphism test and dump information in a png format (see Fig 19). The input parameters are basically the same as the above function. The difference is that it needs a folder to dump information. 
 
-![iso_rel_e](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/iso_rel_e.png)
+![iso_rel_e](./fig/iso_rel_e.png)
 
 <center>Fig 19. Example of the dumped information. The red 'x' presents a relative, blue '+' is a non-isomerphic one.</center>
 

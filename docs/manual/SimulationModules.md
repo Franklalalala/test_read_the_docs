@@ -83,7 +83,7 @@ The `resrc_para` and `mach_para` are designed to configure a suitable environmen
 * `pristine_path`: the path to the pristine cage. It could be in any mainstream structure format, only if the [ASE](https://wiki.fysik.dtu.dk/ase/ase/io/io.html#ase.io.read) package supports it.
 * `root`: the ABSOLUTE path to the growth simulation workbase, where the AutoSteper would make a directory in the name of the pristine cage. Fig 5 presents one of the workbase directory.
 
-![root](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/root.png)
+![root](./fig/root.png)
 
 <center>Fig 5. An AutoSteper workbase.</center>
 
@@ -96,13 +96,13 @@ The `gen_para` and `opt` parameters configure a generator and an optimizer. To s
 
 AutoSteper would create sub-workbases for every addon number. Fig 6 presents one of the scenarios. In this case, the `start` value is 1, the `stop` value is 10, and the `step` value is 1.
 
-![addon](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/addon.png)
+![addon](./fig/addon.png)
 
 <center>Fig 6. An AutoSteper sub-workbase.</center>
 
 The directory of the **first** step is illustrated in Fig 7.
 
-![first_step](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/first_step.png)
+![first_step](./fig/first_step.png)
 
 <center>Fig 7. The first step workbase.</center>
 
@@ -119,7 +119,7 @@ The functions of each file/directory are presented below.
   * `xyz_path`: the absolute path to each isomer structure, in `xyz` format.
   * `nimages`: the number of images in each optimization trajectory.
 
-![deep_yes](F:\AutoSteper_doc\fig\deep_yes.png)
+![deep_yes](./fig/deep_yes.png)
 
 <center>Fig 8. Example of the passed_info.</center>
 
@@ -127,11 +127,11 @@ The functions of each file/directory are presented below.
   * The first step is different from others since there is only one parent for all the $\rm C_{2n}X_{start}$ isomers. Fig 9 presents one of the cases. The columns correspond to each $\rm C_{2n}X_{start}$ isomer. The first row corresponds to their energy.
   * Fig 10 presents a case in the proceeding addition stages. The columns correspond to each $\rm C_{2n}X_{m}, m>start$ isomer. The first row stores the names of their parent(s). Note that, isomers in $\rm C_{2n}X_{m}$ addition stage could have more than one parent $\rm C_{2n}X_{m-step}$. The second row corresponds to their energy. 
 
-![flat_yes_first](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/flat_yes_first.png)
+![flat_yes_first](./fig/flat_yes_first.png)
 
 <center>Fig 9. Example of the parent_info in the first step.</center>
 
-![flat_yes_after](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/flat_yes_after.png)
+![flat_yes_after](./fig/flat_yes_after.png)
 
 <center>Fig 10. Example of the parent_info in the proceeding addition stages.</center>
 
@@ -140,7 +140,7 @@ The functions of each file/directory are presented below.
   * `-1`: topological intactness is undermined. (failed topology check)
   * `-2`: wrong jobs. This would happen when there are no files retrieved from computational resources, for example, the internet is broken.
 
-![status_info](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/status_info.png)
+![status_info](./fig/status_info.png)
 
 <center>Fig 11. Example of the status_info.</center>
 
@@ -148,13 +148,13 @@ The directory of the **proceeding addition stages** is illustrated in Fig 12. Th
 
 - `sub_nauty`: there is more than one parent that generates derivatives. Related information is dumped in this folder.
 
-![after_step](F:\AutoSteper_doc\fig\after_step.png)
+![after_step](./fig/after_step.png)
 
 <center>Fig 12. The workbase for the proceeding addition stages.</center>
 
 - `all_parent_info.pickle`: the parent-son information for all the $\rm C_{2n}X_{m}$ isomers. (see Fig 13.) This is generated when building the quasi-equilibrium isomers. Note that the `parent_info.pickle` only considers the passed ones, and it contains energy info. The `all_parent_info.pickle` stores duplicated but more detailed information, therefore it may be useful for future development.
 
-![all_parent_info](F:\AutoSteper_doc\fig\all_parent_info.png)
+![all_parent_info](./fig/all_parent_info.png)
 
 <center>Fig 13. Example of the all_parent_info.</center>
 
@@ -240,7 +240,7 @@ The machine parameters tell the dpdispatcher **which cluster** to use and **how 
 
 The original workflow of the dpdispatcher is illustrated in Fig 14.
 
-![dpdispatch_arch](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/dpdispatch_arch.png)
+![dpdispatch_arch](./fig/dpdispatch_arch.png)
 
 <center>Fig 14. Simplified workflow of dpdispatcher.</center>
 
@@ -248,7 +248,7 @@ Each optimization job corresponds to a task. Then, tasks are grouped (`group_siz
 
 However, when it comes to huge task sequences, the number of groups in line may put pressure on the cluster. And when something wrong happened in a single job, the whole batch would be undermined. (For example, no retrieval from remote.) Therefore, we proposed the `sub_batch_size` parameter to perform job dispatch in a mini-batch style. An illustration of the modified dpdispatcher is presented in Fig 15. 
 
-![sub_batch_arch](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/sub_batch_arch.png)
+![sub_batch_arch](./fig/sub_batch_arch.png)
 
 <center>Fig 15. A top-down illustration of the modified dpdispatcher.</center>
 
@@ -330,7 +330,7 @@ This is for the case when the queried addon number is very high. Since the `Path
 
 The generated pathways are highly structured and informative, see [AutoSteper/test_path_parser](https://github.com/Franklalalala/AutoSteper/tree/master/tests/test_path_parser). Here presents the well-designed heatmap. See Fig 20.
 
-![Path_relative_energy](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/Path_relative_energy.png)
+![Path_relative_energy](./fig/Path_relative_energy.png)
 
 <center>Fig 20. Example of the generated heatmap for pathways.</center>
 
@@ -345,7 +345,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 1. The isomers that failed the topological check. (denote as failed)
 2. The high-energy isomers within certain reverse cutoff. (denote as unstable)
 
-![blacklist_landscape](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/blacklist_landscape.png)
+![blacklist_landscape](./fig/blacklist_landscape.png)
 
 <center>Fig 16. Illustration of the high-energy configuration space.</center>
 
@@ -353,7 +353,7 @@ When it comes to a new step, the new addition patterns will check through the bl
 
 To control the influence of a high-energy pattern, AutoSteper provides a queue to store high-energy patterns. See Fig 17.
 
-![blk_list](H:/dummy_read_the_docs/test_read_the_docs/docs/manual/fig/blk_list.png)
+![blk_list](./fig/blk_list.png)
 
 <center>Fig 17. Illustration of the queue maintained by AutoSteper.</center>
 
@@ -382,7 +382,7 @@ The pre-scan feature takes the quasi-equilibrium geometry to approximate the equ
 
 The generated isomer (in `atom` class) would go through a single-point evaluation before dumping to a xyz format file. After the generation of all isomers, the low-energy ones will be selected and re-dumped into the `post_pre_scan_raw` folder. These isomers would undergo geometry optimization with optimizers. Fig 18 presents a working folder when the pre-scan feature is enabled. It’s basically the same as the `step` mode workbase.
 
-![pre_scan_folder](F:\AutoSteper_doc\fig\pre_scan_folder.png)
+![pre_scan_folder](./fig/pre_scan_folder.png)
 
 <center>Fig 18. The workbase when the pre-scan feature enabled.</center>
 
