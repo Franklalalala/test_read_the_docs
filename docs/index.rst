@@ -19,13 +19,16 @@ Contents
 --------
 
 .. toctree::
+   :maxdepth: 2
+   :caption: User guide
 
    Home <self>
    usage
    api
 
 .. toctree::
-    :caption: Development
+   :maxdepth: 2
+   :caption: Development
 
    changelog 
    
