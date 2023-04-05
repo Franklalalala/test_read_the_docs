@@ -17,13 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "Basic Sphinx Example Project"
-copyright = "2022, Read the Docs core team"
-author = "Read the Docs core team"
+project = "AutoSteper"
+copyright = "2022, M.K. Liu"
+author = "M.K. Liu"
 
 
 # -- General configuration ---------------------------------------------------
-# -- General configuration
 # extensions = [
 #     "sphinx.ext.duration",
 #     "sphinx.ext.doctest",
