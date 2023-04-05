@@ -13,7 +13,7 @@
 
 ## 1.3.8 (2023-03-08~2023-03-27)
 
-### Changes from v1.0.4 to v1.3.8
+### Changes from v1.0.3 to v1.3.8
 
 * feat: implementation of release-please github bot to perform version control. ([7a2808b](https://github.com/Franklalalala/AutoSteper/commit/7a2808bdb78bd27e75bb84968ceba7dab17c9a31))
 * feat: implementation of MANIFEST.in to control the size of the published project. ([84678d7](https://github.com/Franklalalala/AutoSteper/commit/84678d7f2ced00d59984d06a399aa62f6e49c111))

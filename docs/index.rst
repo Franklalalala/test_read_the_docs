@@ -20,7 +20,11 @@ Table of Contents
    :maxdepth: 2
    :caption: User guide
 
-   manual/autosteper
+   manual/Installation
+   manual/GettingStarted
+   manual/SimulationModules
+   manual/AnalysisFunctions
+
 
 .. toctree::
    :maxdepth: 2
