@@ -13,7 +13,7 @@ how to :ref:`installation` the project.
 
    This project is under active development.
 
-Contents
+Table of Contents
 ------------------------------------
 
 .. toctree::
@@ -25,6 +25,7 @@ Contents
 .. toctree::
    :maxdepth: 2
    :caption: Development
-
-   miscellaneous/changelog 
-   
+ 
+   miscellaneous/contributing    
+   miscellaneous/license 
+   miscellaneous/changelog
