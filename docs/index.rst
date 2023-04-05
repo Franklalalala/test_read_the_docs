@@ -27,5 +27,5 @@ Contents
    :maxdepth: 2
    :caption: Development
 
-   changelog 
+   miscellaneous/changelog 
    
