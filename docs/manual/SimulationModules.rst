@@ -155,9 +155,8 @@ Fig 6. An AutoSteper sub-workbase.
 
 The directory of the **first** step is illustrated in Fig 7.
 
-.. figure:: ./fig/first_step.png
+.. image:: ./fig/first_step.png
    :alt: first_step
-   :width: 400px
    :align: center
 
 .. raw:: html
