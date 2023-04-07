@@ -101,7 +101,7 @@ Specifically, one needs to provide:
    the AutoSteper would make a directory in the name of the pristine
    cage. Fig 5 presents one of the workbase directory.
 
-.. figure:: ./fig/root.png
+.. image:: ./fig/root.png
    :alt: root
    :align: center
 
@@ -139,7 +139,7 @@ AutoSteper would create sub-workbases for every addon number. Fig 6
 presents one of the scenarios. In this case, the ``start`` value is 1,
 the ``stop`` value is 10, and the ``step`` value is 1.
 
-.. figure:: ./fig/addon.png
+.. image:: ./fig/addon.png
    :alt: addon
    :align: center
 
@@ -193,7 +193,7 @@ The functions of each file/directory are presented below.
       ``xyz`` format.
    -  ``nimages``: the number of images in each optimization trajectory.
 
-.. figure:: ./fig/deep_yes.png
+.. image:: ./fig/deep_yes.png
    :alt: deep_yes
    :align: center
 
@@ -226,7 +226,7 @@ Fig 8. Example of the passed_info.
       more than one parent :math:`\rm C_{2n}X_{m-step}`. The second row
       corresponds to their energy.
 
-.. figure:: ./fig/flat_yes_first.png
+.. image:: ./fig/flat_yes_first.png
    :alt: flat_yes_first
    :align: center
 
@@ -240,7 +240,7 @@ Fig 9. Example of the parent_info in the first step.
 
    </center>
 
-.. figure:: ./fig/flat_yes_after.png
+.. image:: ./fig/flat_yes_after.png
    :alt: flat_yes_after
    :align: center
 
@@ -266,7 +266,7 @@ Fig 10. Example of the parent_info in the proceeding addition stages.
       retrieved from computational resources, for example, the internet
       is broken.
 
-.. figure:: ./fig/status_info.png
+.. image:: ./fig/status_info.png
    :alt: status_info
    :align: center
 
@@ -286,7 +286,7 @@ Fig 12. The difference compared with the first step is presented below:
 -  ``sub_nauty``: there is more than one parent that generates
    derivatives. Related information is dumped in this folder.
 
-.. figure:: ./fig/after_step.png
+.. image:: ./fig/after_step.png
    :alt: after_step
    :align: center
 
@@ -308,7 +308,7 @@ Fig 12. The workbase for the proceeding addition stages.
    duplicated but more detailed information, therefore it may be useful
    for future development.
 
-.. figure:: ./fig/all_parent_info.png
+.. image:: ./fig/all_parent_info.png
    :alt: all_parent_info
    :align: center
 
@@ -453,7 +453,7 @@ computation resources to each job.
 
 The original workflow of the dpdispatcher is illustrated in Fig 14.
 
-.. figure:: ./fig/dpdispatch_arch.png
+.. image:: ./fig/dpdispatch_arch.png
    :alt: dpdispatch_arch
    :align: center
 
@@ -480,7 +480,7 @@ retrieval from remote.) Therefore, we proposed the ``sub_batch_size``
 parameter to perform job dispatch in a mini-batch style. An illustration
 of the modified dpdispatcher is presented in Fig 15.
 
-.. figure:: ./fig/sub_batch_arch.png
+.. image:: ./fig/sub_batch_arch.png
    :alt: sub_batch_arch
    :align: center
 
@@ -629,7 +629,7 @@ The generated pathways are highly structured and informative, see
 `AutoSteper/test_path_parser <https://github.com/Franklalalala/AutoSteper/tree/master/tests/test_path_parser>`__.
 Here presents the well-designed heatmap. See Fig 20.
 
-.. figure:: ./fig/Path_relative_energy.png
+.. image:: ./fig/Path_relative_energy.png
    :alt: Path_relative_energy
    :align: center
 
@@ -663,7 +663,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 2. The high-energy isomers within certain reverse cutoff. (denote as
    unstable)
 
-.. figure:: ./fig/blacklist_landscape.png
+.. image:: ./fig/blacklist_landscape.png
    :alt: blacklist_landscape
    :align: center
 
@@ -684,7 +684,7 @@ recorded patterns, it will be directly skipped.
 To control the influence of a high-energy pattern, AutoSteper provides a
 queue to store high-energy patterns. See Fig 17.
 
-.. figure:: ./fig/blk_list.png
+.. image:: ./fig/blk_list.png
    :alt: blk_list
    :align: center
 
@@ -743,7 +743,7 @@ optimization with optimizers. Fig 18 presents a working folder when the
 pre-scan feature is enabled. It’s basically the same as the ``step``
 mode workbase.
 
-.. figure:: ./fig/pre_scan_folder.png
+.. image:: ./fig/pre_scan_folder.png
    :alt: pre_scan_folder
    :align: center
 

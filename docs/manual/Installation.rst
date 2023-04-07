@@ -76,7 +76,7 @@ this binary file:
 
    path/to/cagesearch
 
-.. figure:: ./fig/nauty_notation.png
+.. image:: ./fig/nauty_notation.png
    :alt: image-20221220010149410
    :align: center
 

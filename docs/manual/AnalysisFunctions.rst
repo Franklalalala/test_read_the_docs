@@ -100,7 +100,7 @@ format (see Fig 19). The input parameters are basically the same as the
 above function. The difference is that it needs a folder to dump
 information.
 
-.. figure:: ./fig/iso_rel_e.png
+.. image:: ./fig/iso_rel_e.png
    :alt: iso_rel_e
    :align: center
 
