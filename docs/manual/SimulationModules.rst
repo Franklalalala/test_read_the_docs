@@ -157,6 +157,7 @@ The directory of the **first** step is illustrated in Fig 7.
 
 .. figure:: ./fig/first_step.png
    :alt: first_step
+   :width: 400px
    :align: center
 
 .. raw:: html
