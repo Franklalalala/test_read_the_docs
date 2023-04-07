@@ -21,7 +21,6 @@ Table of Contents
    :caption: User guide
 
    manual/Installation
-   manual/GettingStarted
    manual/SimulationModules
    manual/AnalysisFunctions
 

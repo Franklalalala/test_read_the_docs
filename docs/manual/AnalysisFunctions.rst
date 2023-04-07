@@ -1,8 +1,8 @@
 Analysis Functions
 ==================
 
-AutoSteper provides multiple functions and abstractions to perform the
-post-analysis. Here presents a brief introduction.
+AutoSteper provides multiple functions to perform post-analysis. Here
+presents a brief introduction.
 
 Refine
 ------
@@ -108,7 +108,7 @@ information.
 
    <center>
 
-Fig 19. Example of the dumped information. The red ‘x’ presents a
+Fig 1. Example of the dumped information. The red ‘x’ presents a
 relative, blue ‘+’ is a non-isomerphic one.
 
 .. raw:: html

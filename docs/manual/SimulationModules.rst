@@ -1,6 +1,13 @@
 Simulation Modules
 ==================
 
+AutoSteper provides a fully automated fashion to simulate stepwise
+chemical reactions. That contains on-the-fly building, optimizing, and
+checking. Additionally, a light-weight pathway search algorithm is built
+along with the simulation, and some variants of the stepwise model are
+proposed in pre-san and blacklist sections. In the end, we will address
+some engineering problems.
+
 AutoSteper
 ----------
 
@@ -15,9 +22,7 @@ below:
 -  ``base``: enumerate and evaluate all the non-isomorphic isomers for a
    specific addon number.
 
-Except for these functions, AutoSteper provides engineering-related
-features, such as ``restart`` and ``error handling``. For details see
-the ``engineering`` section.
+Here brings a gentle introduction to three of them.
 
 step
 ~~~~
@@ -99,7 +104,7 @@ Specifically, one needs to provide:
    package supports it.
 -  ``root``: the ABSOLUTE path to the growth simulation workbase, where
    the AutoSteper would make a directory in the name of the pristine
-   cage. Fig 5 presents one of the workbase directory.
+   cage. Fig 1 presents one of the workbase directory.
 
 .. image:: ./fig/root.png
    :alt: root
@@ -109,7 +114,7 @@ Specifically, one needs to provide:
 
    <center>
 
-Fig 5. An AutoSteper workbase.
+Fig 1. An AutoSteper workbase.
 
 .. raw:: html
 
@@ -135,7 +140,7 @@ provide the ``run_para`` with the following parameters considered.
    and the ``value`` is 1eV. ``rank_and_value`` means the lower boundary
    of two of them.
 
-AutoSteper would create sub-workbases for every addon number. Fig 6
+AutoSteper would create sub-workbases for every addon number. Fig 2
 presents one of the scenarios. In this case, the ``start`` value is 1,
 the ``stop`` value is 10, and the ``step`` value is 1.
 
@@ -147,13 +152,13 @@ the ``stop`` value is 10, and the ``step`` value is 1.
 
    <center>
 
-Fig 6. An AutoSteper sub-workbase.
+Fig 2. An AutoSteper sub-workbase.
 
 .. raw:: html
 
    </center>
 
-The directory of the **first** step is illustrated in Fig 7.
+The directory of the **first** step is illustrated in Fig 3.
 
 .. image:: ./fig/first_step.png
    :alt: first_step
@@ -163,7 +168,7 @@ The directory of the **first** step is illustrated in Fig 7.
 
    <center>
 
-Fig 7. The first step workbase.
+Fig 3. The first step workbase.
 
 .. raw:: html
 
@@ -184,7 +189,7 @@ The functions of each file/directory are presented below.
 -  ``passed_info.pickle``: key information of the optimization jobs that
    **passed** the topological check. In the early version of AutoSteper,
    this file is called ``deep_yes_info.pickle``, meaning information is
-   stored in a deep chart. Fig 8 presents one of the scenarios. The
+   stored in a deep chart. Fig 4 presents one of the scenarios. The
    meaning of each column is presented below:
 
    -  ``name``: the name for each isomer, in 36 format.
@@ -201,7 +206,7 @@ The functions of each file/directory are presented below.
 
    <center>
 
-Fig 8. Example of the passed_info.
+Fig 4. Example of the passed_info.
 
 .. raw:: html
 
@@ -215,11 +220,11 @@ Fig 8. Example of the passed_info.
    parsing the topological information.
 
    -  The first step is different from others since there is only one
-      parent for all the :math:`\rm C_{2n}X_{start}` isomers. Fig 9
+      parent for all the :math:`\rm C_{2n}X_{start}` isomers. Fig 5
       presents one of the cases. The columns correspond to each
       :math:`\rm C_{2n}X_{start}` isomer. The first row corresponds to
       their energy.
-   -  Fig 10 presents a case in the proceeding addition stages. The
+   -  Fig 6 presents a case in the proceeding addition stages. The
       columns correspond to each :math:`\rm C_{2n}X_{m}, m>start`
       isomer. The first row stores the names of their parent(s). Note
       that, isomers in :math:`\rm C_{2n}X_{m}` addition stage could have
@@ -234,7 +239,7 @@ Fig 8. Example of the passed_info.
 
    <center>
 
-Fig 9. Example of the parent_info in the first step.
+Fig 5. Example of the parent_info in the first step.
 
 .. raw:: html
 
@@ -248,7 +253,7 @@ Fig 9. Example of the parent_info in the first step.
 
    <center>
 
-Fig 10. Example of the parent_info in the proceeding addition stages.
+Fig 6. Example of the parent_info in the proceeding addition stages.
 
 .. raw:: html
 
@@ -274,14 +279,14 @@ Fig 10. Example of the parent_info in the proceeding addition stages.
 
    <center>
 
-Fig 11. Example of the status_info.
+Fig 7. Example of the status_info.
 
 .. raw:: html
 
    </center>
 
 The directory of the **proceeding addition stages** is illustrated in
-Fig 12. The difference compared with the first step is presented below:
+Fig 8. The difference compared with the first step is presented below:
 
 -  ``sub_nauty``: there is more than one parent that generates
    derivatives. Related information is dumped in this folder.
@@ -294,14 +299,14 @@ Fig 12. The difference compared with the first step is presented below:
 
    <center>
 
-Fig 12. The workbase for the proceeding addition stages.
+Fig 8. The workbase for the proceeding addition stages.
 
 .. raw:: html
 
    </center>
 
 -  ``all_parent_info.pickle``: the parent-son information for all the
-   :math:`\rm C_{2n}X_{m}` isomers. (see Fig 13.) This is generated when
+   :math:`\rm C_{2n}X_{m}` isomers. (see Fig 9.) This is generated when
    building the quasi-equilibrium isomers. Note that the
    ``parent_info.pickle`` only considers the passed ones, and it
    contains energy info. The ``all_parent_info.pickle`` stores
@@ -316,7 +321,7 @@ Fig 12. The workbase for the proceeding addition stages.
 
    <center>
 
-Fig 13. Example of the all_parent_info.
+Fig 9. Example of the all_parent_info.
 
 .. raw:: html
 
@@ -451,7 +456,7 @@ The machine parameters tell the dpdispatcher **which cluster** to use
 and **how to contact**, while the resource parameter **assigns**
 computation resources to each job.
 
-The original workflow of the dpdispatcher is illustrated in Fig 14.
+The original workflow of the dpdispatcher is illustrated in Fig 10.
 
 .. image:: ./fig/dpdispatch_arch.png
    :alt: dpdispatch_arch
@@ -461,7 +466,7 @@ The original workflow of the dpdispatcher is illustrated in Fig 14.
 
    <center>
 
-Fig 14. Simplified workflow of dpdispatcher.
+Fig 10. Simplified workflow of dpdispatcher.
 
 .. raw:: html
 
@@ -478,7 +483,7 @@ line may put pressure on the cluster. And when something wrong happened
 in a single job, the whole batch would be undermined. (For example, no
 retrieval from remote.) Therefore, we proposed the ``sub_batch_size``
 parameter to perform job dispatch in a mini-batch style. An illustration
-of the modified dpdispatcher is presented in Fig 15.
+of the modified dpdispatcher is presented in Fig 11.
 
 .. image:: ./fig/sub_batch_arch.png
    :alt: sub_batch_arch
@@ -488,7 +493,7 @@ of the modified dpdispatcher is presented in Fig 15.
 
    <center>
 
-Fig 15. A top-down illustration of the modified dpdispatcher.
+Fig 11. A top-down illustration of the modified dpdispatcher.
 
 .. raw:: html
 
@@ -655,7 +660,7 @@ isomers probably contain local instability motifs, therefore their
 derivatives will unlikely to become stable ones since they still contain
 those instability motifs. This is a dual concept to the low-energy
 configuration space, which is treated as seeds to generate derivatives.
-See Fig 16.
+See Fig 12.
 
 AutoSteper collects two kinds of isomers into the blacklist.
 
@@ -671,7 +676,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 
    <center>
 
-Fig 16. Illustration of the high-energy configuration space.
+Fig 12. Illustration of the high-energy configuration space.
 
 .. raw:: html
 
@@ -682,7 +687,7 @@ through the blacklist at first. If a pattern contains any of the
 recorded patterns, it will be directly skipped.
 
 To control the influence of a high-energy pattern, AutoSteper provides a
-queue to store high-energy patterns. See Fig 17.
+queue to store high-energy patterns. See Fig 13.
 
 .. image:: ./fig/blk_list.png
    :alt: blk_list
@@ -692,7 +697,7 @@ queue to store high-energy patterns. See Fig 17.
 
    <center>
 
-Fig 17. Illustration of the queue maintained by AutoSteper.
+Fig 13. Illustration of the queue maintained by AutoSteper.
 
 .. raw:: html
 
@@ -739,7 +744,7 @@ The generated isomer (in ``atom`` class) would go through a single-point
 evaluation before dumping to a xyz format file. After the generation of
 all isomers, the low-energy ones will be selected and re-dumped into the
 ``post_pre_scan_raw`` folder. These isomers would undergo geometry
-optimization with optimizers. Fig 18 presents a working folder when the
+optimization with optimizers. Fig 14 presents a working folder when the
 pre-scan feature is enabled. It’s basically the same as the ``step``
 mode workbase.
 
@@ -751,7 +756,7 @@ mode workbase.
 
    <center>
 
-Fig 18. The workbase when the pre-scan feature enabled.
+Fig 14. The workbase when the pre-scan feature enabled.
 
 .. raw:: html
 
