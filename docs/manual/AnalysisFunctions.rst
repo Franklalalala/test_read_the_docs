@@ -118,6 +118,37 @@ relative, blue ‘+’ is a non-isomerphic one.
 In addition, AutoSteper dumps the relative energy of each scanned
 isomer, and groups them into the ``non_rel_e`` and ``rel_e``.
 
+Pathway analysis
+----------------
+
+This function is designed to generate pathways from **re-generated**
+topological linkage information (the ``parent-son`` information as
+mentioned before).
+
+There are several reasons to re-build the pathway analysis:
+
+1. The multi-level refinement of pathways is refining isomers in fact.
+2. In the final stage, the number of isomers is relatively small and
+   manageable.
+
+The pathway search undergoes several steps:
+
+1. **Re-generated** topological linkage information, that is testing the
+   sub-isomorphism of every :math:`\rm C_{2n}X_{m+step}` with each
+   :math:`\rm C_{2n}X_{m}` isomer.
+2. Perform a DFS search to build complete pathway sets.
+3. Dump information.
+
+Since this function utilizes the `NetworkX
+Isomorphism <https://networkx.org/documentation/stable/reference/algorithms/isomorphism.html>`__
+section to re-generate pathways, it can only be implemented when the
+isomers are kept in hundreds.
+
+The final pathway search requires multiple input parameters, therefore
+this feature is not recommended to be used separately. It has been
+integrated into a higher-level function, which minimized the efforts
+required in the final analysis stage. See below.
+
 Simple parse disordered logs
 ----------------------------
 
@@ -214,10 +245,42 @@ Details about the output are presented below:
 For an example, see
 `AutoSteper/test_find_SWR <https://github.com/Franklalalala/AutoSteper/tree/master/tests/test_find_SWR>`__.
 
-Pathway analysis
-----------------
+Collect failed
+--------------
 
-To do
+The failed-check optimization jobs are collected into the
+``failed_job_paths`` file. To have an overview of failed job types, call
+function ``clc_failed``.
+
+Three parameters are required:
+
+-  ``workbase``: where the simulation is performed, see section
+   ``SimulationModules`` Fig 2.
+-  ``dump_pic_path``: where the collected information dumps, an absolute
+   root to a picture.
+-  ``ylim``: Optional parameter. For users who are interested to set an
+   upper limit of the y-axis.
+
+Fig 2 presents a collected distribution of failed jobs, it was performed
+with :math:`\rm C_{60}Br_x` systems, 50 isomers for x = 3, 6, 9, 12, 15,
+18 are sampled with AutoSteper’s random mode.
+
+.. image:: ./fig/C60_ih_Br.png
+   :alt: C60Brx
+   :align: center
+
+.. raw:: html
+
+   <center>
+
+Fig 2. Distribution of failed jobs for a random simulation.
+
+.. raw:: html
+
+   </center>
+
+The legend on the upper left denotes the types of failed jobs. They are
+corresponding to the 7 rules mentioned in the previous section.
 
 Binding energy analysis
 -----------------------

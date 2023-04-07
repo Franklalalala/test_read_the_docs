@@ -544,22 +544,24 @@ The checker module will check optimized isomers to ensure an undermined
 topology. 7 scenarios could be detected, their corresponding failed
 status codes are presented below.
 
-1. At least one functional group breaks the bond with the cage and
+-  1: At least one functional group breaks the bond with the cage and
    becomes a radical.
-2. At least one functional group deviates from the initial addition site
-   and moves to another.
-3. At least one 3-membered carbon ring is formed during optimization,
+-  2: At least one functional group deviates from the initial addition
+   site and moves to another.
+-  3: At least one 3-membered carbon ring is formed during optimization,
    meaning the pristine cage is squeezed by functional groups.
-4. At least one carbon atom only has 2 neighboring carbon atoms or less,
-   meaning the cage is broken.
-5. At least one functional group binds with 2 or more carbon atoms,
+-  4: At least one carbon atom only has 2 neighboring carbon atoms or
+   less, meaning the cage is broken.
+-  5: At least one functional group binds with 2 or more carbon atoms,
    which is unstable for currently supported functional groups.
-6. At least one carbon atom binds with 5 or more atoms, which means a
+-  6: At least one carbon atom binds with 5 or more atoms, which means a
    small cluster or a coordination is formed.
-7. The inner intactness of at least one functional group
+-  7: The inner intactness of at least one functional group
    (:math:`\rm OH, CF_3, CH_3`) is undermined.
 
 These status codes will be reported in the ``failed_job_paths`` file.
+These status code could be collected with help of ``clc_failed``
+function, see ``Analysis Functions`` section.
 
 Need to mention that, the AutoSteper module doesn’t need any specific
 input parameters for the checker module, though it could also be used
@@ -632,7 +634,7 @@ be well preserved.
 
 The generated pathways are highly structured and informative, see
 `AutoSteper/test_path_parser <https://github.com/Franklalalala/AutoSteper/tree/master/tests/test_path_parser>`__.
-Here presents the well-designed heatmap. See Fig 20.
+Here presents the well-designed heatmap. See Fig 12.
 
 .. image:: ./fig/Path_relative_energy.png
    :alt: Path_relative_energy
@@ -642,7 +644,7 @@ Here presents the well-designed heatmap. See Fig 20.
 
    <center>
 
-Fig 20. Example of the generated heatmap for pathways.
+Fig 12. Example of the generated heatmap for pathways.
 
 .. raw:: html
 
@@ -660,7 +662,7 @@ isomers probably contain local instability motifs, therefore their
 derivatives will unlikely to become stable ones since they still contain
 those instability motifs. This is a dual concept to the low-energy
 configuration space, which is treated as seeds to generate derivatives.
-See Fig 12.
+See Fig 13.
 
 AutoSteper collects two kinds of isomers into the blacklist.
 
@@ -676,7 +678,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 
    <center>
 
-Fig 12. Illustration of the high-energy configuration space.
+Fig 13. Illustration of the high-energy configuration space.
 
 .. raw:: html
 
@@ -687,7 +689,7 @@ through the blacklist at first. If a pattern contains any of the
 recorded patterns, it will be directly skipped.
 
 To control the influence of a high-energy pattern, AutoSteper provides a
-queue to store high-energy patterns. See Fig 13.
+queue to store high-energy patterns. See Fig 14.
 
 .. image:: ./fig/blk_list.png
    :alt: blk_list
@@ -697,7 +699,7 @@ queue to store high-energy patterns. See Fig 13.
 
    <center>
 
-Fig 13. Illustration of the queue maintained by AutoSteper.
+Fig 14. Illustration of the queue maintained by AutoSteper.
 
 .. raw:: html
 
@@ -744,7 +746,7 @@ The generated isomer (in ``atom`` class) would go through a single-point
 evaluation before dumping to a xyz format file. After the generation of
 all isomers, the low-energy ones will be selected and re-dumped into the
 ``post_pre_scan_raw`` folder. These isomers would undergo geometry
-optimization with optimizers. Fig 14 presents a working folder when the
+optimization with optimizers. Fig 15 presents a working folder when the
 pre-scan feature is enabled. It’s basically the same as the ``step``
 mode workbase.
 
@@ -756,7 +758,7 @@ mode workbase.
 
    <center>
 
-Fig 14. The workbase when the pre-scan feature enabled.
+Fig 15. The workbase when the pre-scan feature enabled.
 
 .. raw:: html
 
