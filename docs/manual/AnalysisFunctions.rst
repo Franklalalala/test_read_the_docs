@@ -149,8 +149,8 @@ this feature is not recommended to be used separately. It has been
 integrated into a higher-level function, which minimized the efforts
 required in the final analysis stage. See below.
 
-Simple parse disordered logs
-----------------------------
+Cook disordered
+---------------
 
 To better analyze the low-energy configuration space, AutoSteper
 provides the ``cook_disordered`` function to translate disordered log
@@ -161,6 +161,21 @@ be generated. Details are presented below:
    column meaning the pathway-related names, ``rel_e`` corresponds to
    the relative energy of isomers, ``e_area`` means the relative energy
    of pathways.
+
+.. image:: ./fig/pathway_pickle.png
+   :alt: pathway_pickle
+   :align: center
+
+.. raw:: html
+
+   <center>
+
+Fig 2. The pathway_info.pickle file.
+
+.. raw:: html
+
+   </center>
+
 -  ``./sorted``: sorted information for isomer rankings. And this is a
    standard output format.
 
@@ -171,7 +186,8 @@ be generated. Details are presented below:
       addend and its energy rank is 1 (the lowest energy one).
    -  ``./sorted/xyz``: the final image of the optimization trajectory.
       The name convention is the same as above.
-   -  ``./sorted/info``: energy information.
+   -  ``./sorted/info``: energy information. (in pickle and excel
+      format)
    -  ``./sorted/connection``: connection information.
       ``1_addons_1.npy`` corresponds to the isomer, whose geometry
       information is stored in ``1_addons_1.xyz``. This isomer has
@@ -201,6 +217,9 @@ topological analysis. See ``find_SWR`` and ``get_binding_e`` in below.
 SWR analysis
 ------------
 
+Find SWR
+~~~~~~~~
+
 For description convenience, here we denote an isomer before and after
 an SWR as :math:`\rm ^{\#1}C_{2n}Cl_{2m}` and
 :math:`\rm ^{\#2}C_{2n}Cl_{2(m+1)}`. The :math:`\rm ^{\#1}C_{2n}` system
@@ -218,9 +237,9 @@ One needs to provide the following parameters:
 -  ``is_unique``: if true, for every atoms in q_root, only one SWR
    target is outputted, typically for the lowest energy isomer, here we
    take the rank info in the name as criteria.
--  ``is_low_e``: if true, for every atoms in q_root, only one SWR target
-   is outputted, and it should have lower energy than the ‘ought to be’
-   parents.
+-  ``is_low_e``: if true, the energy criterion is applicated, and all
+   the SWR targets should have lower energy than the ‘ought to be’
+   children (derivatives).
 
 Details about the output are presented below:
 
@@ -245,6 +264,9 @@ Details about the output are presented below:
 For an example, see
 `AutoSteper/test_find_SWR <https://github.com/Franklalalala/AutoSteper/tree/master/tests/test_find_SWR>`__.
 
+Count SWR
+~~~~~~~~~
+
 Collect failed
 --------------
 
@@ -261,7 +283,7 @@ Three parameters are required:
 -  ``ylim``: Optional parameter. For users who are interested to set an
    upper limit of the y-axis.
 
-Fig 2 presents a collected distribution of failed jobs, it was performed
+Fig 3 presents a collected distribution of failed jobs, it was performed
 with :math:`\rm C_{60}Br_x` systems, 50 isomers for x = 3, 6, 9, 12, 15,
 18 are sampled with AutoSteper’s random mode.
 
@@ -273,7 +295,7 @@ with :math:`\rm C_{60}Br_x` systems, 50 isomers for x = 3, 6, 9, 12, 15,
 
    <center>
 
-Fig 2. Distribution of failed jobs for a random simulation.
+Fig 3. Distribution of failed jobs for a random simulation.
 
 .. raw:: html
 
@@ -311,8 +333,3 @@ the format of ``pickle`` and ``xlsx``.
 
 For an example, see
 `AutoSteper/test_binding_e.py <https://github.com/Franklalalala/AutoSteper/blob/master/tests/test_binding_e/test_binding_e.py>`__.
-
-Plot with FullereneDataParser
------------------------------
-
-To develop

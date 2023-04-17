@@ -27,7 +27,10 @@ Here brings a gentle introduction to three of them.
 step
 ~~~~
 
-The input script below is a typical case:
+Input script
+^^^^^^^^^^^^
+
+Here is one of the typical input script:
 
 .. code:: python
 
@@ -36,20 +39,14 @@ The input script below is a typical case:
    from autosteper import AutoSteper
 
    mach_para = {
-       'batch_type': "x",
-       'context_type': "SSHContext",
-       'remote_root': 'xx/',
-       'remote_profile': {
-           "hostname": "xx",
-           "username": "xx",
-           "password": "xx",
-           "port": 22,
-           "timeout": 10
-       }
+       'batch_type': "Torque",
+       'context_type': "LocalContext",
+       'remote_root': 'x/to/test_dpdispatcher',
+       'remote_profile': None
    }
 
    resrc_para = {
-       'number_node': 6,
+       'number_node': 1,
        'cpu_per_node': 6,
        'gpu_per_node': 0,
        'group_size': 10,
@@ -64,15 +61,16 @@ The input script below is a typical case:
    }
 
    para = {
-       'pristine_path': r'geom.xyz',
+       'pristine_path': r'C60.xyz',
        'root': r'./',
        'gen_para': {'group': 'Cl',
                     'geom_mode': 'pre_defined',
-                    'gen_core_path': r'xx\cagesearch.exe'
+                    'gen_core_path': r'path/to/cagesearch'
                     },
        'opt_mode': 'xtb',
        'opt_para': {
-           'cmd_list': [r'xx/xtb', '--opt', 'tight', '--json'],
+           'has_parity': True,
+           'cmd_list': [r'path/to/xtb', '--opt', 'tight', '--json'],
            'out_list': ['xtbopt.xyz', 'xtbopt.log', 'xtbout.json'],
            'deal_wrong_mode': 'Report',
            'mach_para': mach_para,
@@ -80,18 +78,20 @@ The input script below is a typical case:
        },
        'run_para': {
            'start': 1,
-           'stop': 4,
+           'stop': 3,
            'step': 1,
            'wht_list_para': {
                'mode': 'rank',
-               'rank': 5
+               'rank': 3
            }
        },
    }
 
-   # raw folder is pre-defined
    auto = AutoSteper(para=para)
    auto.run()
+
+Parameters and folder system
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``resrc_para`` and ``mach_para`` are designed to configure a
 suitable environment for optimizers. (see optimizer module) After that,
@@ -133,12 +133,7 @@ provide the ``run_para`` with the following parameters considered.
    first step.
 -  ``wht_list_para``: parameters to control the isomers saved in every
    step. These isomers will serve as seeds in the next step to generate
-   derivatives. The white list is a relatively concept to the blacklist.
-   7 modes could be selected, details see
-   `AutoSteper/test_cutoff.py <https://github.com/Franklalalala/AutoSteper/blob/master/tests/test_cutoff/test_cutoff.py>`__.
-   The default mode is ``rank_and_value``, in which the ``rank`` is 200,
-   and the ``value`` is 1eV. ``rank_and_value`` means the lower boundary
-   of two of them.
+   derivatives. Details see next section.
 
 AutoSteper would create sub-workbases for every addon number. Fig 2
 presents one of the scenarios. In this case, the ``start`` value is 1,
@@ -260,16 +255,17 @@ Fig 6. Example of the parent_info in the proceeding addition stages.
    </center>
 
 -  ``status_info.pickle``: the status code for each optimization job, in
-   flat chart format for indexing convenience. Note that this status
-   code is different from the failed status code. Only three codes are
-   available:
+   flat chart format for indexing convenience. Three types of status
+   codes are reported:
 
    -  ``0``: normal termination.
-   -  ``-1``: topological intactness is undermined. (failed topology
-      check)
    -  ``-2``: wrong jobs. This would happen when there are no files
       retrieved from computational resources, for example, the internet
-      is broken.
+      is broken, or the initial structure is so unphysical that the
+      optimizer program went broken.
+   -  ``>0``: the optimized isomer did not pass the topological check,
+      their corresponding failed status codes will be reported. See the
+      ``Checker`` section.
 
 .. image:: ./fig/status_info.png
    :alt: status_info
@@ -326,6 +322,39 @@ Fig 9. Example of the all_parent_info.
 .. raw:: html
 
    </center>
+
+Cut-off
+^^^^^^^
+
+Generally speaking, there are two types of cutoff. The hard one,
+``rank``, and the soft one, ``value``.
+
+The reason to call ``rank`` as hard is that, for each step, there are
+tens of thousands of isomers to be screened. We cannot estimate the
+sparsity of low-energy isomers beforehand. We can only set an upper
+limit base on our computational resources. That is, by default, 200. If
+one has 5 times computational resources, this figure could be toggled to
+1000. It’s adjustable.
+
+On the other hand, from a chemical view, one needs to set this cutoff
+with a soft criterion, ``value``. This figure is by default 1eV, and
+it’s adjustable.
+
+AutoSteper provides 4 modes to control the cutoff process:
+
+-  ``rank``
+-  ``value``
+-  ``rank_or_value`` or ``value_and_rank``: both of the cutoffs need to
+   be met.
+-  ``rank_and_value`` or ``value_and_rank``: met anyone of the two
+   cutoffs is sufficient.
+
+By default, AutoSteper utilizes the ``rank_and_value`` mode, for
+``rank``\ =200, ``value``\ =1eV. See
+`code <https://github.com/Franklalalala/AutoSteper/blob/773de279226b089141e580901894531e9dba70bd/src/autosteper/autosteper.py#L30>`__.
+
+**This is adjustable.** One may apply any of the modes with any favored
+number.
 
 random
 ~~~~~~
@@ -559,9 +588,10 @@ status codes are presented below.
 -  7: The inner intactness of at least one functional group
    (:math:`\rm OH, CF_3, CH_3`) is undermined.
 
-These status codes will be reported in the ``failed_job_paths`` file.
-These status code could be collected with help of ``clc_failed``
-function, see ``Analysis Functions`` section.
+These status codes will be reported in the ``failed_job_paths`` file and
+could be indexed from the ``status_info.pickle``. Additionally, these
+status codes could be collected with help of ``clc_failed`` function,
+see ``Analysis Functions`` section.
 
 Need to mention that, the AutoSteper module doesn’t need any specific
 input parameters for the checker module, though it could also be used

@@ -9,8 +9,9 @@ AutoSteper has a dependency on multiple projects, namely:
 -  pandas
 -  networkx
 -  tqdm
--  matplotlib
+-  matplotlib>=3.6.0
 -  seaborn
+-  openpyxl
 -  DPDispatcher
 -  FullereneDataParser
 -  usenauty
@@ -46,13 +47,13 @@ Fig 1. Illustration of the communication scheme in AutoSteper.
 
    </center>
 
-In general, the remote resources are HPC(High-performance computing),
-which is accommodated with the Linux operation system, while the local
-resource could be your PC(Personal Computer), a Windows system, or stay
-in line with the remote.
+In general, the remote resources are HPCC(High-Performance Computing
+Cluster), which is accommodated with the Linux operation system, while
+the local resource could be your PC(Personal Computer), a Windows
+system, or stay in line with the remote.
 
 Here we **recommend** setup all your workbase on the Linux platform,
-since the communication between HPC with PC may undermine performance.
+since the communication between HPCC with PC may undermine performance.
 Though you can set up a Windows version to perform some analyzing tasks.
 
 For Linux users
@@ -90,7 +91,7 @@ further installation, a C compiler needs to be prepared. For example:
 
 Here we **strongly recommend** users load the highest version of the
 compiler that is available. Note that the
-`usenauty <https://github.com/Franklalalala/usenauty>`__ module
+`usenauty <https://github.com/Franklalalala/usenauty>`__ project
 requested a compiler that satisfies the `CXX 17
 standard <https://en.wikipedia.org/wiki/C%2B%2B17>`__. A satisfied
 compiler will avoid most of the installation problems, though a lower
@@ -102,7 +103,7 @@ has been utilized in this project to convert 3D coordinates into
 graph6str format and properly visualize isomers, pathways, and SWR
 pairs.
 `FullereneDataParser <https://github.com/XJTU-ICP/FullereneDataParser>`__
-is developed by XJTU-ICP member Y.B. Han, see the
+is developed by XJTU-ICP member Y.B. Han, see
 `article <https://pubs.rsc.org/en/content/articlelanding/2022/CP/D2CP03549A>`__.
 
 To install this project:
@@ -116,7 +117,9 @@ Finally, the in-house built C++ project
 collected. `usenauty <https://github.com/Franklalalala/usenauty>`__ is a
 lightweight tool to enumerate non-isomorphic addition patterns with
 `nauty <https://doi.org/10.1016/j.cpc.2020.107206>`__ algorithm which is
-created by Brendan D. McKay. The original modification is performed in
+created by Brendan D. McKay, see
+`article <https://doi.org/10.1016/j.jsc.2013.09.003>`__. The original
+modification is performed in
 `usenauty <https://github.com/saltball/usenauty>`__ by XJTU-ICP member
 Y. B. Han. Here we employ a branch version of it.
 

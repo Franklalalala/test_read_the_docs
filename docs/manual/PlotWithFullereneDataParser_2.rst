@@ -12,7 +12,7 @@ modeling of the conjugate system with curvature”).
 
 .. note::
 
-   Please cite the article (DOI:10.1039/D2CP03549A) if ``autosteper.plotter`` is utilized in your work.
+   Please cite the article: https://doi.org/10.1039/D2CP03549A, if ``autosteper.plotter`` is utilized in your work.
 
 
 Basic usage
@@ -66,7 +66,7 @@ plotter will set up a new figure with the parameters in below:
 
 See:
 
-.. image:: ./fig/customized_image.png
+.. image:: ./fig/pure.png
    :width: 400
    :alt: root
    :align: center
