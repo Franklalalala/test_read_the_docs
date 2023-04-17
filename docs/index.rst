@@ -1,17 +1,17 @@
 Welcome to the AutoSteper's documentation
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+AutoSteper is a Python package to simulate and analyze the stepwise
+reaction in a fully automated fashion. That is:
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+-  Build on the fly
+-  Optimize on the fly
+-  Topological check on the fly
 
-.. note::
-
-   This project is under active development.
+Besides, multiple analysis functions are available. Currently, it well
+supports the exohedral fullerene systems
+:math:`\rm C_{2n}X_m(X=H, F,Cl, Br, I, OH, CF_3, CH_3)`. This is the
+user guide to help users hands-on.
 
 Table of Contents
 ------------------------------------
@@ -23,7 +23,7 @@ Table of Contents
    manual/Installation
    manual/SimulationModules
    manual/AnalysisFunctions
-
+   manual/PlotWithFullereneDataParser
 
 .. toctree::
    :maxdepth: 2
