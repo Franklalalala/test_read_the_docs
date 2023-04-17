@@ -518,11 +518,10 @@ Plot SWR
 --------
 
 The problem of plot SWR is basically the same as above. A one-step-SWR
-between cage 1 and cage 2 means there is one C-C bond rotated 90 degrees
-to become cage 2.
+between cage 1 and cage 2 means there is one C-C bond rotated 90 degrees in cage 1 to become cage 2.
 
 For example, :math:`\rm ^{\#11}C_{84}` and :math:`\rm ^{\#12}C_{84}`,
-there are 82 carbon atoms are identical. One needs to match pristine
+there are 82 identical carbon atoms. One needs to match pristine
 cages before the ``load_cage`` stage and change the addon numbers to the
 new, re-matched cages.
 
