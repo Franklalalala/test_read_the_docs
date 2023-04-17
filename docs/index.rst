@@ -23,7 +23,7 @@ Table of Contents
    manual/Installation
    manual/SimulationModules
    manual/AnalysisFunctions
-   manual/PlotWithFullereneDataParser
+   manual/PlotWithFullereneDataParser_2
 
 .. toctree::
    :maxdepth: 2
