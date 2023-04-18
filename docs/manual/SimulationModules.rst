@@ -1,6 +1,12 @@
 Simulation Modules
 ==================
 
+
+.. note::
+
+   The ``Plot with FullereneDataParser`` section may help you properly visualize simulation results.
+ 
+
 AutoSteper provides a fully automated fashion to simulate stepwise
 chemical reactions. That contains on-the-fly building, optimizing, and
 checking. Additionally, a light-weight pathway search algorithm is built
@@ -95,11 +101,6 @@ An example could be found in
 
 Parameters and folder system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. note::
-
-   The ``Plot with FullereneDataParser`` section may help you properly visualize simulation results.
-
 
 
 The ``resrc_para`` and ``mach_para`` are designed to configure a
