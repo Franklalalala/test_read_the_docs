@@ -613,88 +613,6 @@ input parameters for the checker module, though it could also be used
 alone. See
 `checker <https://github.com/Franklalalala/AutoSteper/tree/master/gym/simulation/checker>`__.
 
-Path parser
------------
-
-The ``Path_Parser`` is an abstraction designed to get pathways from the
-``parent-son`` information, which is generated along with the **Growth
-Simulation**. This feature is considered since the very beginning of
-AutoSteper. The ``parent-son`` information could be viewed as a
-by-product of the simulation, therefore the calculation of pathways is
-extremely fast.
-
-One needs to provide the following parameters for a basic configuration:
-
-.. code:: python
-
-   path_para = {
-       'step': 1, # the step that used in the growth simulation.
-       'start': 1, # when the growth simulation started
-       'q_add_num': 4, 
-       'q_path_rank': 10,
-       'q_isomer_rank': 5,
-       'log_low_e_num': 10, 
-   }
-
-The configuration will generate pathways for :math:`\rm C_{2n}X_{m}\_i`.
-Here the ``q_add_num`` is the m, the ``q_isomer_rank`` is i.
-``log_low_e_num`` will dump low-energy isomers
-:math:`\rm C_{2n}X_{m}\_i, i<log\_low\_e\_num` into a log.
-``q_path_rank`` will decide how many low-energy pathways to be dumped.
-
-This configuration parses pathways for the specific ``q_isomer_rank``.
-All the pathways end to the
-:math:`\rm C_{2n}X_{m}\_i, i=q\_isomer\_rank`.
-
-To see a mixed scenario, simply set the ``is_mixed`` flag to True. The
-generated pathways will end to
-:math:`\rm C_{2n}X_{m}\_i, i<=q\_isomer\_rank`.
-
-If one needs a higher accuracy of pathways, there is a refiner option in
-``Path_Parser``. If one needs to control the number of pathways, set a
-``ctl_path_para`` as below:
-
-.. code:: python
-
-   path_para = {
-       'step': 1, # the step that used in the growth simulation.
-       'start': 1, # when the growth simulation started
-       'q_add_num': 22, 
-       'q_path_rank': 10,
-       'q_isomer_rank': 5,
-       'log_low_e_num': 10, 
-       'ctl_path_para': {
-           'ctl_parent_num': 3, # Control the number of parents for each isomer.
-           'max_path_num': 10000, # Control the maximum number of pathways.
-       }
-   }
-
-This is for the case when the queried addon number is very high. Since
-the ``Path_Parser`` functions in a DFS way, the low-energy pathways will
-be well preserved.
-
-The generated pathways are highly structured and informative, see
-`path_parser <https://github.com/Franklalalala/AutoSteper/tree/master/gym/simulation/path_parser>`__.
-Here presents the well-designed heatmap. See Fig 12. This is the pathway
-for :math:`\rm C_{60}Cl_6` under xTB level of theory.
-
-.. image:: ./fig/Path_relative_energy.png
-   :alt: Path_relative_energy
-   :align: center
-
-.. raw:: html
-
-   <center>
-
-Fig 12. Example of the generated heatmap for pathways.
-
-.. raw:: html
-
-   </center>
-
-It well-explained the ranking of pathways. For example, all the related
-isomers for the pathway in row 1 is the lowest-energy one (relative
-energy is 0), therefore it’s the lowest-energy pathway.
 
 Black list
 ----------
@@ -704,7 +622,7 @@ isomers probably contain local instability motifs, therefore their
 derivatives will unlikely to become stable ones since they still contain
 those instability motifs. This is a dual concept to the low-energy
 configuration space, which is treated as seeds to generate derivatives.
-See Fig 13.
+See Fig 14.
 
 AutoSteper collects two kinds of isomers into the blacklist.
 
@@ -720,7 +638,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 
    <center>
 
-Fig 13. Illustration of the high-energy configuration space.
+Fig 14. Illustration of the high-energy configuration space.
 
 .. raw:: html
 
@@ -731,7 +649,7 @@ through the blacklist at first. If a pattern contains any of the
 recorded patterns, it will be directly skipped.
 
 To control the influence of a high-energy pattern, AutoSteper provides a
-queue to store high-energy patterns. See Fig 14.
+queue to store high-energy patterns. See Fig 15.
 
 .. image:: ./fig/blk_list.png
    :alt: blk_list
@@ -741,7 +659,7 @@ queue to store high-energy patterns. See Fig 14.
 
    <center>
 
-Fig 14. Illustration of the queue maintained by AutoSteper.
+Fig 15. Illustration of the queue maintained by AutoSteper.
 
 .. raw:: html
 
@@ -788,7 +706,7 @@ The generated isomer (in ``atom`` class) would go through a single-point
 evaluation before dumping to a xyz format file. After the generation of
 all isomers, the low-energy ones will be selected and re-dumped into the
 ``post_pre_scan_raw`` folder. These isomers would undergo geometry
-optimization with optimizers. Fig 15 presents a working folder when the
+optimization with optimizers. Fig 16 presents a working folder when the
 pre-scan feature is enabled. It’s basically the same as the ``step``
 mode workbase.
 
@@ -800,7 +718,7 @@ mode workbase.
 
    <center>
 
-Fig 15. The workbase when the pre-scan feature enabled.
+Fig 16. The workbase when the pre-scan feature enabled.
 
 .. raw:: html
 
