@@ -15,7 +15,7 @@ user guide to help users hands-on.
 
 .. note::
 
-   This is a stable version, all unit test has been conducted.
+   This is a stable version, all key modules have been tested.
 
 
 Table of Contents
