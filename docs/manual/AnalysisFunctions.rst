@@ -647,10 +647,10 @@ Two ways to decide the queried addition pattern.
 -  The second way to get the addition pattern:
 
    -  ``q_seq``: the 36-base format name. See `the 36 base
-      function <https://github.com/Franklalalala/AutoSteper/blob/18f474b0dd58adc9cd7484007a14927e2cde5123/src/autosteper/cage.py#L59>`__.
+      function <https://github.com/Franklalalala/AutoSteper/blob/master/src/autosteper/cage.py#L59>`__.
 
    -  ``q_cage``: the key to decipher the 36-base name to a sequence, in
-      `AutoSteper/cage <https://github.com/Franklalalala/AutoSteper/blob/18f474b0dd58adc9cd7484007a14927e2cde5123/src/autosteper/cage.py#L11>`__
+      `AutoSteper/cage <https://github.com/Franklalalala/AutoSteper/blob/master/src/autosteper/cage.py#L11>`__
       format.
 
 After that, one needs to provide:
