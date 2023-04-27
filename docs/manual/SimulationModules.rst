@@ -1,12 +1,6 @@
 Simulation Modules
 ==================
 
-
-.. note::
-
-   The ``Plot with FullereneDataParser`` section may help you properly visualize simulation results.
- 
-
 AutoSteper provides a fully automated fashion to simulate stepwise
 chemical reactions. That contains on-the-fly building, optimizing, and
 checking. Additionally, a light-weight pathway search algorithm is built
@@ -101,7 +95,6 @@ An example could be found in
 
 Parameters and folder system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 The ``resrc_para`` and ``mach_para`` are designed to configure a
 suitable environment for optimizers. (see optimizer module) After that,
@@ -349,31 +342,36 @@ Generally speaking, there are two types of cutoff. The hard one,
 The reason to call ``rank`` as hard is that, for each step, there are
 tens of thousands of isomers to be screened. We cannot estimate the
 sparsity of low-energy isomers beforehand. We can only set an upper
-limit base on our computational resources. That is, by default, 200. If
-one has 5 times computational resources, this figure could be toggled to
-1000. It’s **adjustable**.
+limit base on our computational resources. It could be 200, or if one
+has 5 times the computational resources, this figure could be toggled to
+1000. It’s **tunable**.
 
 On the other hand, from a chemical view, one needs to set this cutoff
-with a soft criterion, ``value``. This figure is by default 1eV, and
-it’s **adjustable**.
+with a soft criterion, ``value``. This figure could be 1eV or other
+numbers. It’s **tunable**.
 
 AutoSteper provides 4 modes to control the cutoff process:
 
 -  ``rank``
 -  ``value``
--  ``rank_or_value`` or ``value_and_rank``: both of the cutoffs need to
+-  ``rank_or_value`` or ``value_or_rank``: both of the cutoffs need to
    be met.
 -  ``rank_and_value`` or ``value_and_rank``: met anyone of the two
    cutoffs is sufficient.
 
-By default, AutoSteper utilizes the ``rank_and_value`` mode, for
-``rank``\ =200, ``value``\ =1eV. **This is adjustable.** **One may apply
-any of the modes with any favored number.** See
-`code <https://github.com/Franklalalala/AutoSteper/blob/773de279226b089141e580901894531e9dba70bd/src/autosteper/autosteper.py#L30>`__
-and
-`test <https://github.com/Franklalalala/AutoSteper/tree/master/gym/simulation/cutoff>`__.
+In the latest version of AutoSteper, the default cutoff has been
+removed. Users **MUST** provide a reasonable energy cutoff for growth
+simulation. Here are two tips for users to choose a suitable cutoff:
 
-A simple application of this function is to extract low-energy isomers
+1. The combination of rank and value cutoff may provide chemically
+   intuitive and computationally affordable results.
+2. A small cutoff is encouraged to perform a trial calculation, to
+   ‘feel’ the computational cost, then enlarge it to gain a more
+   complete view.
+
+For input format, please check the
+`example <https://github.com/Franklalalala/AutoSteper/tree/master/gym/simulation/cutoff>`__.
+Another application of this function is to extract low-energy isomers
 from an information pickle file, see
 `get_low_e_xyz.py <https://github.com/Franklalalala/AutoSteper/blob/master/gym/simulation/cutoff/get_low_e_xyz.py>`__.
 
@@ -416,8 +414,58 @@ stay the same as above. The execution method of AutoSteper changed from
 Generator
 ---------
 
-The generator module is in charge of building molecules. Details of
-parameters are presented below:
+AutoSteper builds molecules with simple geometry techniques considered.
+See Fig 10.
+
+.. image:: ./fig/build_unit.png
+   :alt: build_unit
+   :align: center
+
+.. raw:: html
+
+   <center>
+
+Fig 10. Visualization of modeling techniques.
+
+.. raw:: html
+
+   </center>
+
+That is when one is trying to functionalize a carbon site. Three of its
+neighbors and the cage center are considered, see Fig x (a). To start
+with, here we put one Cl atom on top of this carbon site. This procedure
+is split into 3 steps:
+
+1. Calculate the normal vector of the three neighbors formed plane.
+2. If this normal vector points to the inside of this cage (judged by
+   the cage center), give it a minus sign to make sure it points to the
+   outside.
+3. Start from the ‘to-be-functionalized’ atom, following the direction
+   of the normal vector, at a distance of bond length, put an atom.
+
+This will get a quasi-equilibrium isomer since the bond length is
+hand-tuned.
+
+For the -OH group, an additional step is required:
+
+4. Create a new atom. Set the distance between new atoms and previously
+   defined O atom as a fixed value. Set the angle between new-O-C to a
+   fixed value.
+
+This will ensure that the new H atom is staying in a circle, its
+position will ensure that O-H distance and C-O-H met requirements,
+though its specific position will not be defined.
+
+For the -CH3 and -CF3 group, an additional step is required compared to
+-OH:
+
+5. After we put the first H or F atom, rotate the C-H (C-F) vector with
+   the normal vector as the axis, :math:`\rm \frac{2}{3\pi}` and
+   :math:`\rm \frac{4}{3\pi}` respectively to get two new vectors. Start
+   from the new carbon atom, following these two vectors, at a distance
+   of C-H (C-F) bond length, put the rest two atoms.
+
+Details of parameters are presented below:
 
 -  ``group``: the name of functional groups. Currently, AutoSteper
    supports :math:`\rm C_{2n}X_m(X=H, F,Cl, Br, I, OH, CF_3, CH_3)`.
@@ -429,12 +477,16 @@ parameters are presented below:
 
 -  ``geom_mode``: decides how to build quasi-equilibrium isomers. This
    parameter is highly recommended to be set as ``pre_defined``. The
-   pre-defined geometry parameters are chosen from thousands of randomly
-   sampled isomers. If one needs to change these parameters, set
-   ``geom_mode`` to another value and assign new parameters through
+   pre-defined geometry parameters are achieved from thousands of
+   randomly sampled isomers. If one needs to change these parameters,
+   set ``geom_mode`` to another value and assign new parameters through
    ``geom_para``. Note that, the new format needs to stay consistent
    with `the
    original <https://github.com/Franklalalala/AutoSteper/blob/18f474b0dd58adc9cd7484007a14927e2cde5123/src/autosteper/generator.py#L12>`__.
+
+-  ``skin``: parameter to decide whether two atoms are bonded. For
+   details see the checker module. By default, this parameter is set to
+   be 0.15.
 
 Note that, the generator module could be used alone to build hand-tuned
 structures. See
@@ -506,7 +558,7 @@ The machine parameters tell the dpdispatcher **which cluster** to use
 and **how to contact**, while the resource parameter **assigns**
 computation resources to each job.
 
-The original workflow of the dpdispatcher is illustrated in Fig 10.
+The original workflow of the dpdispatcher is illustrated in Fig 11.
 
 .. image:: ./fig/dpdispatch_arch.png
    :alt: dpdispatch_arch
@@ -516,7 +568,7 @@ The original workflow of the dpdispatcher is illustrated in Fig 10.
 
    <center>
 
-Fig 10. Simplified workflow of dpdispatcher.
+Fig 11. Simplified workflow of dpdispatcher.
 
 .. raw:: html
 
@@ -533,7 +585,7 @@ line may put pressure on the cluster. And when something wrong happened
 in a single job, the whole batch would be undermined. (For example, no
 retrieval from remote.) Therefore, we proposed the ``sub_batch_size``
 parameter to perform job dispatch in a mini-batch style. An illustration
-of the modified dpdispatcher is presented in Fig 11.
+of the modified dpdispatcher is presented in Fig 12.
 
 .. image:: ./fig/sub_batch_arch.png
    :alt: sub_batch_arch
@@ -543,7 +595,7 @@ of the modified dpdispatcher is presented in Fig 11.
 
    <center>
 
-Fig 11. A top-down illustration of the modified dpdispatcher.
+Fig 12. A top-down illustration of the modified dpdispatcher.
 
 .. raw:: html
 
@@ -585,8 +637,48 @@ Checker
 -------
 
 The checker module will check optimized isomers to ensure an undermined
-topology. 7 scenarios could be detected, their corresponding failed
-status codes are presented below.
+topology. We implement the
+`natural_cutoffs <https://wiki.fysik.dtu.dk/ase/ase/neighborlist.html#ase.neighborlist.natural_cutoffs>`__
+to decide whether two atoms are bonded.
+
+Following this convention, we will assign covalent radii to each atom.
+For carbon atoms, it is 0.76, and for Cl atoms, it is 1.02.
+
+Additionally, we assign each atom **‘skin’**. That is, a fixed value for
+all atoms to boost the covalent radii. By default, this value is set to
+0.3. That means for the carbon atom, the covalent radii raised to 1.06,
+and for Cl atoms, it’s 1.32.
+
+With these parameters, if a carbon atom is within a 1.06+1.32(2.38)
+distance, we will decide they are bonded. However, the Cl-cage bond
+length distribution show that, the distance is around 1.8, see Fig 13.
+Therefore, we turned down the skin value to 0.15. This will set a 2.08
+bond length limitation.
+
+.. image:: ./fig/Cl_addon_len.png
+   :alt: Cl_addon_len
+   :align: center
+
+.. raw:: html
+
+   <center>
+
+Fig 13. The distribution of Cl-Cage bond length.
+
+.. raw:: html
+
+   </center>
+
+Note that, if a Cl atom deviated from the equilibrium position. The
+optimizer will either put this atom into another equilibrium position or
+turn it into a radical. It’s rare that this atom will stay in bonding
+boundaries.
+
+The ``skin`` parameter is tunable for a loose or tight bonding
+criterion.
+
+7 scenarios could be detected, their corresponding failed status codes
+are presented below.
 
 -  1: At least one functional group breaks the bond with the cage and
    becomes a radical.
@@ -603,6 +695,22 @@ status codes are presented below.
 -  7: The inner intactness of at least one functional group
    (:math:`\rm OH, CF_3, CH_3`) is undermined.
 
+Here in Fig 14, we present examples:
+
+.. image:: ./fig/failed_example.png
+   :alt: failed_example
+   :align: center
+
+.. raw:: html
+
+   <center>
+
+Fig 14. Illustration of some of the failed types.
+
+.. raw:: html
+
+   </center>
+
 These status codes will be reported in the ``failed_job_paths`` file and
 could be indexed from the ``status_info.pickle``. Additionally, these
 status codes could be collected with help of ``clc_failed`` function,
@@ -613,7 +721,6 @@ input parameters for the checker module, though it could also be used
 alone. See
 `checker <https://github.com/Franklalalala/AutoSteper/tree/master/gym/simulation/checker>`__.
 
-
 Black list
 ----------
 
@@ -622,7 +729,7 @@ isomers probably contain local instability motifs, therefore their
 derivatives will unlikely to become stable ones since they still contain
 those instability motifs. This is a dual concept to the low-energy
 configuration space, which is treated as seeds to generate derivatives.
-See Fig 14.
+See Fig 15.
 
 AutoSteper collects two kinds of isomers into the blacklist.
 
@@ -638,7 +745,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 
    <center>
 
-Fig 14. Illustration of the high-energy configuration space.
+Fig 15. Illustration of the high-energy configuration space.
 
 .. raw:: html
 
@@ -649,7 +756,7 @@ through the blacklist at first. If a pattern contains any of the
 recorded patterns, it will be directly skipped.
 
 To control the influence of a high-energy pattern, AutoSteper provides a
-queue to store high-energy patterns. See Fig 15.
+queue to store high-energy patterns. See Fig 16.
 
 .. image:: ./fig/blk_list.png
    :alt: blk_list
@@ -659,7 +766,7 @@ queue to store high-energy patterns. See Fig 15.
 
    <center>
 
-Fig 15. Illustration of the queue maintained by AutoSteper.
+Fig 16. Illustration of the queue maintained by AutoSteper.
 
 .. raw:: html
 
@@ -706,7 +813,7 @@ The generated isomer (in ``atom`` class) would go through a single-point
 evaluation before dumping to a xyz format file. After the generation of
 all isomers, the low-energy ones will be selected and re-dumped into the
 ``post_pre_scan_raw`` folder. These isomers would undergo geometry
-optimization with optimizers. Fig 16 presents a working folder when the
+optimization with optimizers. Fig 17 presents a working folder when the
 pre-scan feature is enabled. It’s basically the same as the ``step``
 mode workbase.
 
@@ -718,7 +825,7 @@ mode workbase.
 
    <center>
 
-Fig 16. The workbase when the pre-scan feature enabled.
+Fig 17. The workbase when the pre-scan feature enabled.
 
 .. raw:: html
 
