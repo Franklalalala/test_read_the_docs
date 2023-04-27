@@ -407,7 +407,7 @@ That is:
 
 Note that, in the practical SWR search, there are much more tricky
 exceptions to be dealt with. Almost all of them came from **unexpected
-isomorphism problems.** Fig 1 presents two of the screened SWR results:
+isomorphism problems.** Fig 8 presents two of the screened SWR results:
 
 .. image:: ./fig/swr_problem.png
    :alt: swr_problem
@@ -417,7 +417,7 @@ isomorphism problems.** Fig 1 presents two of the screened SWR results:
 
    <center>
 
-Fig 1. Visualization of the isomorphism problem.
+Fig 8. Visualization of the isomorphism problem.
 
 .. raw:: html
 
@@ -468,7 +468,7 @@ Two of the parameters need to be taken carefully:
 -  ``is_low_e``: set true to enable an energy criterion
 -  ``is_unique``: set true to keep only one SWR product
 
-The SWR results are highly structured, see Fig 2:
+The SWR results are highly structured, see Fig 9:
 
 .. image:: ./fig/swr_folder_system.png
    :alt: swr_folder_system
@@ -478,7 +478,7 @@ The SWR results are highly structured, see Fig 2:
 
    <center>
 
-Fig 2. Folder system for SWR search results.
+Fig 9. Folder system for SWR search results.
 
 .. raw:: html
 
@@ -503,7 +503,7 @@ Count SWR
 As one may notice, the SWR search results are kind of tricky to follow.
 So, what can we do with this messy data?
 
-Well, let’s start with the sub-folders in Fig 2, one may notice that,
+Well, let’s start with the sub-folders in Fig 10, one may notice that,
 there are more than one SWR pairs detected from
 :math:`\rm ^{\#11}C_{84}Cl_{14}` and :math:`\rm ^{\#12}C_{84}Cl_{16}` (5
 in total). That is, 5 :math:`\rm ^{\#11}C_{84}Cl_{14}` lowest energy
@@ -543,7 +543,7 @@ it comes to the post-addition stage, this number went to zero.
 
    <center>
 
-Fig 4. Illustration of SWR counts.
+Fig 11. Illustration of SWR counts.
 
 .. raw:: html
 
@@ -554,7 +554,7 @@ Fig 4. Illustration of SWR counts.
 The recommended workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here in Fig 5, we present the recommended workflow for SWR analysis.
+Here in Fig 12, we present the recommended workflow for SWR analysis.
 
 .. image:: ./fig/swr_workflow.png
    :alt: swr_workflow
@@ -564,7 +564,7 @@ Here in Fig 5, we present the recommended workflow for SWR analysis.
 
    <center>
 
-Fig 5. The recommended workflow for SWR analysis.
+Fig 12. The recommended workflow for SWR analysis.
 
 .. raw:: html
 
@@ -671,7 +671,7 @@ This function is designed to strictly find relatives of a specific
 isomer. It implements the
 `subgraph_is_isomorphic <https://networkx.org/documentation/latest/reference/algorithms/generated/networkx.algorithms.isomorphism.GraphMatcher.subgraph_is_isomorphic.html#graphmatcher-subgraph-is-isomorphic>`__
 function to perform the isomorphism test and dump information in a png
-format (see Fig 19). The input parameters are basically the same as the
+format (see Fig 13). The input parameters are basically the same as the
 above function. The difference is that it needs a folder to dump
 information.
 
@@ -683,7 +683,7 @@ information.
 
    <center>
 
-Fig 1. Example of the dumped information. The red ‘x’ presents a
+Fig 13. Example of the dumped information. The red ‘x’ presents a
 relative, blue ‘+’ is a non-isomerphic one.
 
 .. raw:: html
@@ -709,9 +709,9 @@ Three parameters are required:
 -  ``ylim``: Optional parameter. For users who are interested to set an
    upper limit of the y-axis.
 
-Fig 3 presents a collected distribution of failed jobs, it was performed
-with :math:`\rm C_{60}Br_x` systems, 50 isomers for x = 3, 6, 9, 12, 15,
-18 are sampled with AutoSteper’s random mode.
+Fig 14 presents a collected distribution of failed jobs, it was
+performed with :math:`\rm C_{60}Br_x` systems, 50 isomers for x = 3, 6,
+9, 12, 15, 18 are sampled with AutoSteper’s random mode.
 
 .. image:: ./fig/C60_ih_Br.png
    :alt: C60Brx
@@ -721,7 +721,7 @@ with :math:`\rm C_{60}Br_x` systems, 50 isomers for x = 3, 6, 9, 12, 15,
 
    <center>
 
-Fig 4. Distribution of failed jobs for a random simulation.
+Fig 14. Distribution of failed jobs for a random simulation.
 
 .. raw:: html
 
