@@ -371,6 +371,7 @@ simulation. Here are two tips for users to choose a suitable cutoff:
 
 For input format, please check the
 `example <https://github.com/Franklalalala/AutoSteper/tree/master/gym/simulation/cutoff>`__.
+
 Another application of this function is to extract low-energy isomers
 from an information pickle file, see
 `get_low_e_xyz.py <https://github.com/Franklalalala/AutoSteper/blob/master/gym/simulation/cutoff/get_low_e_xyz.py>`__.
@@ -415,7 +416,7 @@ Generator
 ---------
 
 AutoSteper builds molecules with simple geometry techniques considered.
-See Fig 10.
+See Fig x.
 
 .. image:: ./fig/build_unit.png
    :alt: build_unit
@@ -425,7 +426,7 @@ See Fig 10.
 
    <center>
 
-Fig 10. Visualization of modeling techniques.
+Fig x. Visualization of modeling techniques.
 
 .. raw:: html
 
@@ -558,7 +559,7 @@ The machine parameters tell the dpdispatcher **which cluster** to use
 and **how to contact**, while the resource parameter **assigns**
 computation resources to each job.
 
-The original workflow of the dpdispatcher is illustrated in Fig 11.
+The original workflow of the dpdispatcher is illustrated in Fig 10.
 
 .. image:: ./fig/dpdispatch_arch.png
    :alt: dpdispatch_arch
@@ -568,7 +569,7 @@ The original workflow of the dpdispatcher is illustrated in Fig 11.
 
    <center>
 
-Fig 11. Simplified workflow of dpdispatcher.
+Fig 10. Simplified workflow of dpdispatcher.
 
 .. raw:: html
 
@@ -585,7 +586,7 @@ line may put pressure on the cluster. And when something wrong happened
 in a single job, the whole batch would be undermined. (For example, no
 retrieval from remote.) Therefore, we proposed the ``sub_batch_size``
 parameter to perform job dispatch in a mini-batch style. An illustration
-of the modified dpdispatcher is presented in Fig 12.
+of the modified dpdispatcher is presented in Fig 11.
 
 .. image:: ./fig/sub_batch_arch.png
    :alt: sub_batch_arch
@@ -595,7 +596,7 @@ of the modified dpdispatcher is presented in Fig 12.
 
    <center>
 
-Fig 12. A top-down illustration of the modified dpdispatcher.
+Fig 11. A top-down illustration of the modified dpdispatcher.
 
 .. raw:: html
 
@@ -651,7 +652,7 @@ and for Cl atoms, it’s 1.32.
 
 With these parameters, if a carbon atom is within a 1.06+1.32(2.38)
 distance, we will decide they are bonded. However, the Cl-cage bond
-length distribution show that, the distance is around 1.8, see Fig 13.
+length distribution show that, the distance is around 1.8, see Fig x.
 Therefore, we turned down the skin value to 0.15. This will set a 2.08
 bond length limitation.
 
@@ -663,7 +664,7 @@ bond length limitation.
 
    <center>
 
-Fig 13. The distribution of Cl-Cage bond length.
+Fig x. The distribution of Cl-Cage bond length.
 
 .. raw:: html
 
@@ -695,7 +696,7 @@ are presented below.
 -  7: The inner intactness of at least one functional group
    (:math:`\rm OH, CF_3, CH_3`) is undermined.
 
-Here in Fig 14, we present examples:
+Here in Fig x, we present examples:
 
 .. image:: ./fig/failed_example.png
    :alt: failed_example
@@ -705,7 +706,7 @@ Here in Fig 14, we present examples:
 
    <center>
 
-Fig 14. Illustration of some of the failed types.
+Fig x. Illustration of some of the failed types.
 
 .. raw:: html
 
@@ -729,7 +730,7 @@ isomers probably contain local instability motifs, therefore their
 derivatives will unlikely to become stable ones since they still contain
 those instability motifs. This is a dual concept to the low-energy
 configuration space, which is treated as seeds to generate derivatives.
-See Fig 15.
+See Fig 13.
 
 AutoSteper collects two kinds of isomers into the blacklist.
 
@@ -745,7 +746,7 @@ AutoSteper collects two kinds of isomers into the blacklist.
 
    <center>
 
-Fig 15. Illustration of the high-energy configuration space.
+Fig 13. Illustration of the high-energy configuration space.
 
 .. raw:: html
 
@@ -756,7 +757,7 @@ through the blacklist at first. If a pattern contains any of the
 recorded patterns, it will be directly skipped.
 
 To control the influence of a high-energy pattern, AutoSteper provides a
-queue to store high-energy patterns. See Fig 16.
+queue to store high-energy patterns. See Fig 14.
 
 .. image:: ./fig/blk_list.png
    :alt: blk_list
@@ -766,7 +767,7 @@ queue to store high-energy patterns. See Fig 16.
 
    <center>
 
-Fig 16. Illustration of the queue maintained by AutoSteper.
+Fig 14. Illustration of the queue maintained by AutoSteper.
 
 .. raw:: html
 
@@ -813,7 +814,7 @@ The generated isomer (in ``atom`` class) would go through a single-point
 evaluation before dumping to a xyz format file. After the generation of
 all isomers, the low-energy ones will be selected and re-dumped into the
 ``post_pre_scan_raw`` folder. These isomers would undergo geometry
-optimization with optimizers. Fig 17 presents a working folder when the
+optimization with optimizers. Fig 15 presents a working folder when the
 pre-scan feature is enabled. It’s basically the same as the ``step``
 mode workbase.
 
@@ -825,7 +826,7 @@ mode workbase.
 
    <center>
 
-Fig 17. The workbase when the pre-scan feature enabled.
+Fig 15. The workbase when the pre-scan feature enabled.
 
 .. raw:: html
 
