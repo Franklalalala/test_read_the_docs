@@ -423,8 +423,8 @@ Fig 8. Visualization of the isomorphism problem.
 
    </center>
 
-There is indeed one SWR step between cage :math:`\rm ^{\#11}C_{84}` and
-:math:`\rm ^{\#12}C_{84}`. However, from a topological view, there are
+There is indeed one SWR step between cage :math:`\rm ^{\#16}C_{84}` and
+:math:`\rm ^{\#11}C_{84}`. However, from a topological view, there are
 two SWR pairs found to exist. Or in other words, these two pairs point
 to the same C-C bond rotation, but in different labels.
 
