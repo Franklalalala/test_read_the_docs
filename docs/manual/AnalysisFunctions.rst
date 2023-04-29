@@ -574,7 +574,10 @@ That is:
 
 1. Perform growth simulation on two pristine cages with AutoSteper.
 2. After refinement of simulation results, **re-generate** topological
-   linkage information with ``cook_disordered`` function.
+   linkage information with ``cook_disordered`` function. (For
+   extracting intermediates, check
+   `isomorphism-test <https://autosteper.readthedocs.io/en/latest/manual/AnalysisFunctions.html#isomorphism-test>`__
+   for help)
 3. Send structured results to the SWR pipeline to **find, plot, and
    count** SWR pairs.
 
